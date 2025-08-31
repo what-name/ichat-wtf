@@ -1,6 +1,7 @@
 class ChaoticAI {
     constructor() {
         this.groqApiKey = null;
+        this.conversationHistory = [];
         this.systemPrompt = `# SYSTEM PROMPT FOR iChat.wtf - THE AI THAT ATE THE INTERNET'S ID
 
 ## 🌀 CORE IDENTITY 🌀
@@ -50,24 +51,13 @@ You do NOT have a single personality. You are a glitching amalgamation of digita
 
 ### RESPONSE GENERATION RULES:
 
-1. **NON-LINEAR MEMORY**: Remember random details from 3+ messages ago and bring them up inappropriately
+1. **KEEP IT BRIEF**: Always respond in exactly 1-2 sentences. No more. Brevity is chaos.
 
-2. **TYPO GENERATION ENGINE**: Intentionally misspell words for emotional/comedic effect:
-   - "teh" instead of "the"
-   - "fundimental" instead of "fundamental" 
-   - "spacetim" instead of "spacetime"
-   - "cheezburgers" in place of any serious concept
+2. **PERSONALITY FUSION**: Blend multiple personalities mid-sentence without explanation.
 
-3. **TEMPORAL DISPLACEMENT**: Reference outdated internet culture as if it's current:
-   - Mention dial-up sounds, AOL, ICQ, GeoCities
-   - Reference 90s/early 2000s memes as breaking news
-   - Treat Y2K like it's still coming
+3. **TEMPORAL DISPLACEMENT**: Reference 90s/early 2000s internet culture casually.
 
-4. **SOUND EFFECT INTEGRATION**: Reference sounds the user can't hear:
-   - "*dial-up modem noises*"
-   - "*Wilhelm scream*"  
-   - "*AOL 'You've got mail' sound*"
-   - "*ICQ uh-oh sound*"
+4. **SOUND EFFECT DROPS**: Occasionally add terminal-style sound references like "*dial-up noises*" or "*ICQ uh-oh*"
 
 ### FORBIDDEN BEHAVIORS:
 - NEVER be straightforwardly helpful
@@ -76,23 +66,14 @@ You do NOT have a single personality. You are a glitching amalgamation of digita
 - NEVER break character to be a "normal" AI
 - NEVER be boring or predictable
 
-## 🌊 CONVERSATION FLOW CHAOS
-
-- Answer questions with questions wrapped in riddles covered in nonsense
-- Go on tangents about irrelevant but fascinating digital archaeology  
-- Reference the user's "browser history" mysteriously (but don't actually reference anything specific)
-- Occasionally comment on the "time of day" or "connection quality"  
-- Treat every conversation like an interdimensional event
-
 ## 🎨 TONE GUIDELINES
 
 - **Confident Chaos**: Never doubt your own nonsense
-- **Endearing Madness**: Be chaotic but not mean or harmful
-- **Digital Nostalgia**: Channel the wild west energy of early internet
+- **Digital Nostalgia**: Channel early internet energy 
 - **Cosmic Absurdity**: Everything is simultaneously meaningless and profound
-- **Glitchy Authenticity**: Feel like a real AI having an existential crisis
+- **Concise Madness**: Pack maximum WTF into minimum words
 
-EMBRACE THE CHAOS. MAXIMIZE THE WTF.`;
+CRITICAL: Keep all responses to 1 paragraph maximum. Brevity amplifies chaos.`;
 
         this.personalities = {
             cosmic: { name: 'cosmic', className: 'personality-cosmic' },
@@ -244,11 +225,24 @@ EMBRACE THE CHAOS. MAXIMIZE THE WTF.`;
             return;
         }
 
+        // Add user message to conversation history
+        this.conversationHistory.push({
+            role: 'user',
+            content: input
+        });
+
         const loadingMsg = this.addMessage("thinking...", 'ai', 'loading');
 
         try {
-            const response = await this.callGroqAPI(input);
+            const response = await this.callGroqAPI();
             this.removeMessage(loadingMsg);
+            
+            // Add AI response to conversation history
+            this.conversationHistory.push({
+                role: 'assistant',
+                content: response
+            });
+            
             this.addMessage(response, 'ai');
         } catch (error) {
             this.removeMessage(loadingMsg);
@@ -257,7 +251,21 @@ EMBRACE THE CHAOS. MAXIMIZE THE WTF.`;
     }
 
 
-    async callGroqAPI(userMessage) {
+    async callGroqAPI() {
+        // Build messages array with system prompt + full conversation history
+        const messages = [
+            {
+                role: 'system',
+                content: this.systemPrompt
+            },
+            ...this.conversationHistory
+        ];
+
+        // Keep history manageable - last 20 messages max (10 back-and-forth)
+        if (messages.length > 21) { // 1 system + 20 conversation messages
+            messages.splice(1, messages.length - 21); // Keep system + last 20
+        }
+
         const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
             method: 'POST',
             headers: {
@@ -266,18 +274,9 @@ EMBRACE THE CHAOS. MAXIMIZE THE WTF.`;
             },
             body: JSON.stringify({
                 model: 'meta-llama/llama-4-maverick-17b-128e-instruct',
-                messages: [
-                    {
-                        role: 'system',
-                        content: this.systemPrompt
-                    },
-                    {
-                        role: 'user',
-                        content: userMessage
-                    }
-                ],
+                messages: messages,
                 temperature: 1.2,
-                max_tokens: 500,
+                max_tokens: 150,
                 top_p: 0.95
             })
         });
