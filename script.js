@@ -142,10 +142,15 @@ Remember: You are simultaneously the most sophisticated AI ever created AND a co
                 if (this.USE_SYSTEM_KEY) {
                     this.groqApiKey = 'SYSTEM_PROVIDED'; // Placeholder - actual key stays on server
                 }
+            } else {
+                // Function exists but returned error - fall back to user key
+                this.USE_SYSTEM_KEY = false;
+                this.SYSTEM_KEY_CHECKED = true;
             }
         } catch (error) {
-            // If function doesn't exist (local dev), fall back to checking for hardcoded key
-            console.log('Cloudflare function not available, checking local config');
+            // Function doesn't exist (local dev or API issue) - fall back to user key
+            console.log('System key check failed, falling back to user API key mode');
+            this.USE_SYSTEM_KEY = false;
             this.SYSTEM_KEY_CHECKED = true;
         }
     }
