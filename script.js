@@ -99,6 +99,9 @@ Remember: You are simultaneously the most sophisticated AI ever created AND a co
         this.apiKeyInput = document.getElementById('apiKeyInput');
         this.saveApiKeyBtn = document.getElementById('saveApiKey');
         this.cancelConfigBtn = document.getElementById('cancelConfig');
+        this.disclaimerModal = document.getElementById('disclaimerModal');
+        this.titleClick = document.getElementById('titleClick');
+        this.closeDisclaimerBtn = document.getElementById('closeDisclaimer');
 
         this.checkSystemKey().then(() => {
             this.loadApiKey();
@@ -129,6 +132,18 @@ Remember: You are simultaneously the most sophisticated AI ever created AND a co
 
         document.getElementById('resetConversation').addEventListener('click', () => {
             this.resetConversation();
+        });
+
+        this.titleClick.addEventListener('click', () => {
+            this.showDisclaimerModal();
+        });
+
+        this.closeDisclaimerBtn.addEventListener('click', () => {
+            this.hideDisclaimerModal();
+        });
+        
+        this.disclaimerModal.addEventListener('click', (e) => {
+            if (e.target === this.disclaimerModal) this.hideDisclaimerModal();
         });
     }
 
@@ -240,6 +255,14 @@ Remember: You are simultaneously the most sophisticated AI ever created AND a co
 
     hideConfigModal() {
         this.configModal.style.display = 'none';
+    }
+
+    showDisclaimerModal() {
+        this.disclaimerModal.style.display = 'flex';
+    }
+
+    hideDisclaimerModal() {
+        this.disclaimerModal.style.display = 'none';
     }
 
     handleSubmit() {

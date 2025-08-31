@@ -52,6 +52,8 @@ body {
     color: var(--fg);
     opacity: 0;
     animation: fadeIn 1s ease-out forwards;
+    cursor: pointer;
+    transition: color 0.2s ease;
 }
 
 .title::after {
@@ -296,6 +298,102 @@ body {
     color: var(--accent);
 }
 
+.title:hover {
+    color: var(--accent);
+}
+
+.disclaimer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.disclaimer-content {
+    background: var(--bg);
+    border: 1px solid var(--accent);
+    padding: 40px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.disclaimer-content h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: var(--accent);
+    text-align: center;
+}
+
+.disclaimer-content p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+    color: var(--fg);
+}
+
+.disclaimer-content strong {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.disclaimer-content ul {
+    margin: 16px 0 16px 20px;
+    color: var(--fg);
+}
+
+.disclaimer-content li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.close-disclaimer-btn {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 12px 24px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.close-disclaimer-btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+}
+
+.disclaimer-footer {
+    text-align: center;
+    margin: 20px 0 10px 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.github-link {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+}
+
+.github-link:hover {
+    color: var(--accent);
+}
+
 @media (max-width: 768px) {
     .terminal-container {
         max-width: 100%;
@@ -326,5 +424,15 @@ body {
         right: auto;
         margin: 10px 15px 0;
         opacity: 0.5;
+    }
+    
+    .disclaimer-content {
+        padding: 30px 20px;
+        margin: 20px;
+        width: auto;
+    }
+    
+    .disclaimer-content h3 {
+        font-size: 16px;
     }
 }
