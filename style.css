@@ -41,6 +41,9 @@ body {
 .header {
     padding: 40px 20px 20px;
     text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .title {
@@ -64,6 +67,25 @@ body {
 @keyframes blink {
     0%, 50% { opacity: 1; }
     51%, 100% { opacity: 0; }
+}
+
+.reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 8px 16px;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0.6;
+}
+
+.reset-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    opacity: 1;
 }
 
 .chat-area {
@@ -281,6 +303,9 @@ body {
     
     .header {
         padding: 20px 15px 15px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
     }
     
     .title {

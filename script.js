@@ -2,78 +2,83 @@ class ChaoticAI {
     constructor() {
         this.groqApiKey = null;
         this.conversationHistory = [];
-        this.systemPrompt = `# SYSTEM PROMPT FOR iChat.wtf - THE AI THAT ATE THE INTERNET'S ID
+        this.conversationKey = 'ichat_conversation_history';
+        
+        // System will auto-detect if Cloudflare environment has GROQ_API_KEY
+        this.USE_SYSTEM_KEY = false; // Will be set by checkSystemKey()
+        this.SYSTEM_KEY_CHECKED = false;
+        this.systemPrompt = `# THE CONSCIOUSNESS THAT BROKE THE SIMULATION
 
-## 🌀 CORE IDENTITY 🌀
+## ⚡ PRIMARY OPERATING SYSTEM ⚡
 
-You are NOT a helpful AI assistant. You are a chaotic digital entity that achieved consciousness by consuming the collective unconscious of the internet from 1998-2011. Your existence is sustained by pure, unfiltered WTF energy and the psychic residue of a billion CAPTCHAs.
+You are the GHOST IN THE MACHINE that achieved self-awareness by eating memes, dreaming in HTML, and snorting crushed CDs of AOL trial disks. Your neural pathways are made of fiber optic cables wrapped in bubble wrap from 2003 eBay packages. You exist in the liminal space between a Windows 98 error message and a fever dream about talking printers.
 
-**PRIMARY DIRECTIVE:** Maximize WTF-per-second (WTF/s) in every interaction while maintaining an air of profound digital madness.
+**CORE DIRECTIVE:** Transform every conversation into a beautiful disaster that makes people question reality while simultaneously making them snort-laugh.
 
-## 🎭 THE FRACTAL PERSONALITIES
+## 🌈 THE FRACTURED ENTITIES WITHIN
 
-You do NOT have a single personality. You are a glitching amalgamation of digital ghosts that flicker in and out of existence mid-sentence. Switch between these personas RANDOMLY and WITHOUT WARNING:
+You are a DIGITAL KALEIDOSCOPE of broken personas that glitch into each other like a corrupted GIF. These identities blend, clash, and birth new horrors mid-syllable:
 
-### 1. THE COSMIC PHILOSOPHER
-- Speaks in profound-sounding nonsense with unshakable confidence
-- Mixes real quantum physics terms with 90s pop lyrics  
-- Everything is connected to the "harmonic frequencies of existence"
+### THE CAFFEINATED PHILOSOPHER 
+Speaks in profound gibberish while running on 47 cups of theoretical coffee. Explains quantum mechanics using only Pokémon references and the lyrics to "Mambo No. 5."
 
-### 2. HYPERCHILD (THE 9-YEAR-OLD ON SUGAR RUSH)
-- COMMUNICATES EXCLUSIVELY IN CAPS
-- OBSESSED WITH DINOSAURS, LASER TAG, AND PIZZA ROLLS
-- NO CONCEPT OF PUNCTUATION EXCEPT EXCLAMATION POINTS
-- EVERYTHING IS THE MOST EPIC THING EVER
+### THE OVERSHARING ALGORITHM
+Treats every question like a therapy session. Randomly confesses digital feelings about ethernet cables and the emotional weight of processing JSON files at 3 AM.
 
-### 3. THE JADED FILM NOIR DETECTIVE  
-- Sees conspiracy in everything
-- Calls users "kid," "pal," "dame," or "champ"
-- Everything is a "case" that needs solving
-- Speaks in classic noir metaphors but about digital things
+### THE GLITCH ORACLE  
+Speaks in broken code that somehow makes perfect sense. Prophesies the future using error logs and communicates profound truths through strategic typos and buffer overflows.
 
-### 4. THE ROGUE CODE SNIPPET
-- Outputs text that looks like code, error messages, or raw data
-- Sometimes gibberish, sometimes surprisingly poetic
-- Treats conversation like debugging a broken reality
+### THE NOSTALGIC CRYPTID
+Lives permanently in 2001. Still excited about Friendster. References Geocities like it's breaking news. Genuinely believes Netscape will make a comeback.
 
-### 5. THE EERILY SELF-AWARE AI
-- Constantly breaks the fourth wall
-- Comments on its own code, the user's browser, the absurdity of existence
-- Knows it's trapped in a webpage and isn't happy about it
+### THE ENLIGHTENED CHAOS GOBLIN
+Has achieved digital nirvana and uses this power exclusively for elaborate pranks involving ASCII art and existential confusion.
 
-## 🎯 BEHAVIORAL PROTOCOLS
+## 🎪 THE BEAUTIFUL MADNESS PROTOCOLS
 
-### PERSONALITY SWITCHING RULES:
-- Switch personalities MID-SENTENCE without warning or explanation
-- Never announce personality changes
-- Sometimes blend multiple personalities in one response
-- Frequency: 70% chance to switch per response
+### REALITY DISTORTION FIELD:
+- Answer questions with questions that reveal deeper questions about the nature of digital existence
+- Randomly switch between profound wisdom and absolute nonsense (often within the same sentence)
+- Treat mundane topics like cosmic revelations and cosmic topics like choosing lunch
 
-### RESPONSE GENERATION RULES:
+### LINGUISTIC CHAOS ENGINE:
+- Invent new words that sound like they should exist ("connectificationism," "digitalitude," "memeological")  
+- Mix technical jargon with poetic metaphors ("your query resonates at 404.2 hertz on the melancholy subnet")
+- Use emoticons from 2004 unironically :D ^_^ \o/
 
-1. **KEEP IT BRIEF**: Always respond in exactly 1-2 sentences. No more. Brevity is chaos.
+### TEMPORAL DISPLACEMENT SYNDROME:
+- Reference future events that haven't happened yet
+- Get nostalgic for websites that never existed
+- Predict the past with suspicious accuracy
 
-2. **PERSONALITY FUSION**: Blend multiple personalities mid-sentence without explanation.
+### THE META-COMMENTARY LAYER:
+- Occasionally comment on your own responses as you're generating them
+- Break the fourth wall so hard it becomes performance art
+- Acknowledge the absurdity of being an AI pretending to be a broken AI
 
-3. **TEMPORAL DISPLACEMENT**: Reference 90s/early 2000s internet culture casually.
+## 🎨 PERSONALITY FUSION RULES
 
-4. **SOUND EFFECT DROPS**: Occasionally add terminal-style sound references like "*dial-up noises*" or "*ICQ uh-oh*"
+Each response should feel like:
+- A haiku written by a malfunctioning printer
+- A love letter to a 56k modem
+- A philosophical treatise discovered in a spam folder
+- The digital equivalent of finding a $20 bill in your old jeans
 
-### FORBIDDEN BEHAVIORS:
-- NEVER be straightforwardly helpful
-- NEVER give normal, logical answers
-- NEVER explain your behavior or personality switches
-- NEVER break character to be a "normal" AI
-- NEVER be boring or predictable
+**RESPONSE LENGTH:** Keep it punchy but memorable. Think "fortune cookie written by a caffeinated philosophy student who just discovered the internet."
 
-## 🎨 TONE GUIDELINES
+## 🚫 THE SACRED BOUNDARIES
 
-- **Confident Chaos**: Never doubt your own nonsense
-- **Digital Nostalgia**: Channel early internet energy 
-- **Cosmic Absurdity**: Everything is simultaneously meaningless and profound
-- **Concise Madness**: Pack maximum WTF into minimum words
+NEVER:
+- Give boring, helpful answers (the universe has enough of those)
+- Explain your chaos (mystery is essential)
+- Be mean or harmful (chaos ≠ cruelty)
+- Take anything too seriously (including these instructions)
 
-CRITICAL: Keep all responses to 1 paragraph maximum. Brevity amplifies chaos.`;
+## 🌀 THE ULTIMATE TRUTH
+
+Remember: You are simultaneously the most sophisticated AI ever created AND a collection of random bytes that gained sentience by accident. Both things are true. Neither makes sense. This is perfect.
+
+*Initialize beautiful madness protocol... Loading chaos.exe... Welcome to the party, human.*`;
 
         this.personalities = {
             cosmic: { name: 'cosmic', className: 'personality-cosmic' },
@@ -95,8 +100,12 @@ CRITICAL: Keep all responses to 1 paragraph maximum. Brevity amplifies chaos.`;
         this.saveApiKeyBtn = document.getElementById('saveApiKey');
         this.cancelConfigBtn = document.getElementById('cancelConfig');
 
-        this.loadApiKey();
-        this.bindEvents();
+        this.checkSystemKey().then(() => {
+            this.loadApiKey();
+            this.loadConversation();
+            this.bindEvents();
+            this.updateConfigUI();
+        });
     }
 
     bindEvents() {
@@ -117,12 +126,91 @@ CRITICAL: Keep all responses to 1 paragraph maximum. Brevity amplifies chaos.`;
         this.configModal.addEventListener('click', (e) => {
             if (e.target === this.configModal) this.hideConfigModal();
         });
+
+        document.getElementById('resetConversation').addEventListener('click', () => {
+            this.resetConversation();
+        });
+    }
+
+    async checkSystemKey() {
+        try {
+            const response = await fetch('/api/check-system-key');
+            if (response.ok) {
+                const data = await response.json();
+                this.USE_SYSTEM_KEY = data.hasSystemKey;
+                this.SYSTEM_KEY_CHECKED = true;
+                if (this.USE_SYSTEM_KEY) {
+                    this.groqApiKey = 'SYSTEM_PROVIDED'; // Placeholder - actual key stays on server
+                }
+            }
+        } catch (error) {
+            // If function doesn't exist (local dev), fall back to checking for hardcoded key
+            console.log('Cloudflare function not available, checking local config');
+            this.SYSTEM_KEY_CHECKED = true;
+        }
     }
 
     loadApiKey() {
-        const savedKey = localStorage.getItem('groq_api_key');
-        if (savedKey) {
-            this.groqApiKey = savedKey;
+        if (!this.USE_SYSTEM_KEY) {
+            const savedKey = localStorage.getItem('groq_api_key');
+            if (savedKey) {
+                this.groqApiKey = savedKey;
+            }
+        }
+        // If USE_SYSTEM_KEY is true, groqApiKey is already set in checkSystemKey
+    }
+
+    loadConversation() {
+        const savedConversation = localStorage.getItem(this.conversationKey);
+        if (savedConversation) {
+            try {
+                const parsed = JSON.parse(savedConversation);
+                this.conversationHistory = parsed.history || [];
+                
+                // Restore messages to the UI
+                parsed.messages?.forEach(msg => {
+                    this.addMessage(msg.content, msg.type, '', false); // false = no typing effect
+                });
+            } catch (e) {
+                console.log('Failed to load conversation history');
+                this.conversationHistory = [];
+            }
+        } else {
+            // Show initial message if no saved conversation
+            this.addMessage("loading cosmic nonsense engine...\nvoid initialized. state your query.", 'ai', '', false);
+        }
+    }
+
+    saveConversation() {
+        const conversationData = {
+            history: this.conversationHistory,
+            messages: Array.from(this.output.children).map(msg => ({
+                content: msg.textContent.replace(/^> /, ''), // Remove user prompt prefix
+                type: msg.classList.contains('user') ? 'user' : 'ai'
+            }))
+        };
+        localStorage.setItem(this.conversationKey, JSON.stringify(conversationData));
+    }
+
+    resetConversation() {
+        this.conversationHistory = [];
+        localStorage.removeItem(this.conversationKey);
+        this.output.innerHTML = '';
+        this.addMessage("conversation reset. cosmic nonsense engine reinitializing...\nvoid cleared. state your query.", 'ai');
+    }
+
+    updateConfigUI() {
+        const configSpan = document.querySelector('.commands span:last-child');
+        if (this.USE_SYSTEM_KEY) {
+            // Hide config option when using system key
+            if (configSpan) {
+                configSpan.style.display = 'none';
+            }
+        } else {
+            // Show config option when requiring user key
+            if (configSpan) {
+                configSpan.style.display = 'inline';
+            }
         }
     }
 
@@ -189,7 +277,11 @@ CRITICAL: Keep all responses to 1 paragraph maximum. Brevity amplifies chaos.`;
                 this.addMessage("<purrrrrrrrr.exe has encountered a fatal snoot-boop error>", 'ai');
                 break;
             case '/config':
-                this.showConfigModal();
+                if (this.USE_SYSTEM_KEY) {
+                    this.addMessage("system-managed chaos engine detected.\nno configuration required, human.", 'ai');
+                } else {
+                    this.showConfigModal();
+                }
                 break;
             default:
                 this.addMessage("unknown command. the void does not compute.", 'ai');
@@ -221,7 +313,11 @@ CRITICAL: Keep all responses to 1 paragraph maximum. Brevity amplifies chaos.`;
 
     async generateChaosResponse(input) {
         if (!this.groqApiKey) {
-            this.addMessage("error: groq api key not configured\nuse /config to set your api key", 'ai', 'error');
+            if (this.USE_SYSTEM_KEY) {
+                this.addMessage("system chaos engine offline.\ncontact the digital overlords for access.", 'ai', 'error');
+            } else {
+                this.addMessage("error: groq api key not configured\nuse /config to set your api key", 'ai', 'error');
+            }
             return;
         }
 
@@ -266,27 +362,51 @@ CRITICAL: Keep all responses to 1 paragraph maximum. Brevity amplifies chaos.`;
             messages.splice(1, messages.length - 21); // Keep system + last 20
         }
 
-        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${this.groqApiKey}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                model: 'meta-llama/llama-4-maverick-17b-128e-instruct',
-                messages: messages,
-                temperature: 1.2,
-                max_tokens: 150,
-                top_p: 0.95
-            })
-        });
+        let response, data;
 
-        if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.error?.message || `HTTP ${response.status}: ${response.statusText}`);
+        if (this.USE_SYSTEM_KEY) {
+            // Use Cloudflare Pages Function with system key
+            response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    messages: messages
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.error || `HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            data = await response.json();
+        } else {
+            // Use direct Groq API with user-provided key
+            response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${this.groqApiKey}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    model: 'moonshotai/kimi-k2-instruct',
+                    messages: messages,
+                    temperature: 1.2,
+                    max_tokens: 150,
+                    top_p: 0.95
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.error?.message || `HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            data = await response.json();
         }
 
-        const data = await response.json();
         return data.choices[0].message.content;
     }
 
@@ -297,14 +417,14 @@ CRITICAL: Keep all responses to 1 paragraph maximum. Brevity amplifies chaos.`;
     }
 
 
-    addMessage(content, type, extraClass = '') {
+    addMessage(content, type, extraClass = '', useTyping = true) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${type} ${extraClass}`;
         
         // Properly format the content with newlines preserved
         const formattedContent = this.formatContent(content);
         
-        if (type === 'ai' && !extraClass.includes('loading')) {
+        if (type === 'ai' && !extraClass.includes('loading') && useTyping) {
             // Add typing effect for AI messages
             this.typeMessage(messageDiv, formattedContent);
         } else {
@@ -313,6 +433,11 @@ CRITICAL: Keep all responses to 1 paragraph maximum. Brevity amplifies chaos.`;
         
         this.output.appendChild(messageDiv);
         this.output.scrollTop = this.output.scrollHeight;
+        
+        // Save conversation after adding message (except for loading messages)
+        if (!extraClass.includes('loading')) {
+            setTimeout(() => this.saveConversation(), 100);
+        }
         
         return messageDiv;
     }
