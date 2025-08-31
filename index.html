@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ichat(wtf)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="header">
+            <h1 class="title">ichat(wtf)</h1>
+        </div>
+        
+        <div class="commands">
+            <span>/reboot</span>
+            <span>/more_wtf</span>
+            <span>/calm_down</span>
+            <span>/pet</span>
+            <span>/config</span>
+        </div>
+        
+        <div class="chat-area">
+            <div class="output" id="output">
+                <div class="message ai">
+                    loading cosmic nonsense engine...
+                    void initialized. state your query.
+                </div>
+            </div>
+            
+            <div class="input-area">
+                <span class="prompt">$</span>
+                <input type="text" id="input" class="input" placeholder="type into the digital abyss..." autocomplete="off" spellcheck="false">
+            </div>
+        </div>
+        
+        <div id="configModal" class="config-modal" style="display: none;">
+            <div class="config-content">
+                <h3>configuration</h3>
+                <p>enter your groq api key:</p>
+                <input type="password" id="apiKeyInput" placeholder="gsk_xxxxxxxxxxxxx...">
+                <div class="config-buttons">
+                    <button id="saveApiKey">save</button>
+                    <button id="cancelConfig">cancel</button>
+                </div>
+                <p class="config-note">stored locally. sent only to groq servers.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
