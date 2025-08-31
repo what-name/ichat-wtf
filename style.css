@@ -176,11 +176,14 @@ body {
     border: none;
     color: var(--fg);
     font-family: inherit;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
     outline: none;
     padding: 0;
     caret-color: var(--accent);
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
 }
 
 .input::placeholder {
@@ -416,6 +419,16 @@ body {
     
     .input-area {
         padding: 15px;
+        position: sticky;
+        bottom: 0;
+        background: var(--bg);
+    }
+    
+    .input {
+        font-size: 16px;
+        min-height: 20px;
+        line-height: 1.5;
+        padding: 2px 0;
     }
     
     .commands {

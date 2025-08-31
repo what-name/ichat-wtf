@@ -15,7 +15,7 @@ iChat.wtf is not your typical AI chatbot. It's a chaotic entity born from the co
 
 ## 🎯 Features
 
-- **Real-time AI responses** powered by Groq's `meta-llama/llama-4-maverick-17b-128e-instruct` model
+- **Real-time AI responses** powered by Groq's `kimi-k2` model
 - **Multiple chaotic personalities** that switch randomly mid-conversation
 - **Secure API key storage** (stored locally in your browser)
 - **Retro internet aesthetic** with animated backgrounds and glitch effects
