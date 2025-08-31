@@ -426,9 +426,12 @@ body {
     
     .input {
         font-size: 16px;
-        min-height: 20px;
+        min-height: 44px;
         line-height: 1.5;
-        padding: 2px 0;
+        padding: 10px 0;
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: 0;
     }
     
     .commands {
